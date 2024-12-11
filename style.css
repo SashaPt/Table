@@ -1,0 +1,119 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+.wrapper {
+  width: 100%;
+  position: relative;
+  overflow-x: auto;
+  margin: 30px 0;
+  scrollbar-width: thin;
+  scrollbar-color: gray transparent;
+}
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+th {
+  border: 1px solid black;
+  width: 100px;
+  white-space: nowrap;
+  background-color: #fff;
+}
+
+td {
+  border: 1px solid black;
+  position: relative;
+  padding-right: 25px;
+  height: 22px;
+  width: 100px;
+  background-color: #fff;
+}
+
+th:first-child,
+td:first-child {
+  position: sticky;
+  width: 200px;
+  left: 0;
+  z-index: 2;
+  border-right: none;
+  box-shadow: -1px 0 0 inset black;
+}
+th:nth-child(2),
+td:nth-child(2) {
+  border-left: none;
+}
+
+.cell {
+  outline: none;
+  border: none;
+  cursor: default;
+  word-break: break-all;
+  display: inline-block;
+  height: 100%;
+}
+
+[draggable='true'] .cell {
+  cursor: grab;
+}
+
+.edit,
+.save {
+  outline: none;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  background-position: center;
+}
+
+.edit {
+  background-image: url("data:image/svg+xml, %3Csvg fill='%23000000' version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 306.637 306.637' xml:space='preserve' %3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M12.809,238.52L0,306.637l68.118-12.809l184.277-184.277l-55.309-55.309L12.809,238.52z M60.79,279.943l-41.992,7.896 l7.896-41.992L197.086,75.455l34.096,34.096L60.79,279.943z' %3E%3C/path%3E%3Cpath d='M251.329,0l-41.507,41.507l55.308,55.308l41.507-41.507L251.329,0z M231.035,41.507l20.294-20.294l34.095,34.095 L265.13,75.602L231.035,41.507z' %3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+}
+.save {
+  background-image: url("data:image/svg+xml, %3Csvg fill='%23000000' version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 78.369 78.369' xml:space='preserve' %3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M78.049,19.015L29.458,67.606c-0.428,0.428-1.121,0.428-1.548,0L0.32,40.015c-0.427-0.426-0.427-1.119,0-1.547l6.704-6.704 c0.428-0.427,1.121-0.427,1.548,0l20.113,20.112l41.113-41.113c0.429-0.427,1.12-0.427,1.548,0l6.703,6.704 C78.477,17.894,78.477,18.586,78.049,19.015z' %3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+}
+
+.edit svg,
+.save svg {
+  width: 100%;
+}
+
+td:hover .edit {
+  opacity: 1;
+  pointer-events: unset;
+}
+
+.cell[contenteditable='true'] ~ .edit {
+  opacity: 0;
+}
+.cell[contenteditable='true'] ~ .save {
+  opacity: 1;
+  pointer-events: unset;
+}
+
+.add-row, .add-column {
+  border: 1px solid black;
+  outline: none;
+  background: transparent;
+  padding: 6px 12px;
+  cursor: pointer;
+}
